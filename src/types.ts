@@ -8,4 +8,6 @@ export const dogSchema = z.object({
   isFavorite: z.boolean(),
 });
 
+export type TNewDog = Omit<TDog, "id">;
+
 export type TDog = z.infer<typeof dogSchema>;
