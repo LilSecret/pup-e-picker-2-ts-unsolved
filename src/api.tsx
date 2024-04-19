@@ -1,4 +1,4 @@
-import { TDog, TNewDog } from "./types";
+import { TNewDog } from "./types";
 
 const BASE_URL = "http://localhost:3000";
 

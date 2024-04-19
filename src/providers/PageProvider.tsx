@@ -1,11 +1,11 @@
 import { ReactNode, createContext, useState } from "react";
-import { TPage } from "../types";
+import { TDog, TPage } from "../types";
 import { useDogContext } from "./provider-hooks";
 
 type TPageProvider = {
-  page: TPage;
-  setPage: (page: TPage) => void;
-  getPage: () => void;
+  currentPage: TPage;
+  setActivePage: (page: TPage) => void;
+  getPage: () => TDog[];
 };
 
 type TProps = {
@@ -15,12 +15,16 @@ type TProps = {
 export const PageContext = createContext<TPageProvider>({} as TPageProvider);
 
 export const PageProvider = ({ children }: TProps) => {
-  const [page, setPage] = useState<TPage>("all");
+  const [currentPage, setCurrentPage] = useState<TPage>("all");
 
   const { dogs } = useDogContext();
 
-  const getPage = () => {
-    switch (page) {
+  const setActivePage = (page: TPage) => {
+    setCurrentPage(page === currentPage ? "all" : page);
+  };
+
+  const getPage = (): TDog[] => {
+    switch (currentPage) {
       case "all":
         return dogs;
       case "favorite":
@@ -33,7 +37,7 @@ export const PageProvider = ({ children }: TProps) => {
   };
 
   return (
-    <PageContext.Provider value={{ page, setPage, getPage }}>
+    <PageContext.Provider value={{ currentPage, setActivePage, getPage }}>
       {children}
     </PageContext.Provider>
   );
