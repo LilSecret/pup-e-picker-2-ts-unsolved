@@ -18,7 +18,7 @@
       "name": "Ana",
       "image": "./public/assets/boxer.png",
       "description": "Analyst function withdrawal United while",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 4
     },
     {
@@ -32,7 +32,7 @@
       "name": "Violette",
       "image": "./public/assets/boxer.png",
       "description": "embrace Web Southwest perspiciatis though",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 6
     },
     {
@@ -81,7 +81,7 @@
       "name": "Sebastian",
       "image": "./public/assets/boxer.png",
       "description": "Associate Gasoline Savings Hybrid Developer",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 13
     },
     {
@@ -125,6 +125,20 @@
       "description": "Planner maxime invoice ROI granular ouch Franc",
       "isFavorite": true,
       "id": 19
+    },
+    {
+      "name": "Kally",
+      "description": "I love to eat apples",
+      "image": "/assets/cowardly.png",
+      "isFavorite": true,
+      "id": 20
+    },
+    {
+      "name": "Charles",
+      "description": "I love to eat cheese",
+      "image": "/assets/boxer.jpeg",
+      "isFavorite": false,
+      "id": 21
     }
   ]
 }

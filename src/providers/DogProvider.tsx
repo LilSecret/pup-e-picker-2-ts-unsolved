@@ -71,6 +71,9 @@ export default function DogProviders({ children }: TProps) {
   const addDog = (dog: TNewDog) => {
     setLoading(true);
     Requests.postDog(dog)
+      .then(() => {
+        updateAllDogs();
+      })
       .catch((error) => {
         if (error) {
           toast.error("There was an Error Posting you Dog");

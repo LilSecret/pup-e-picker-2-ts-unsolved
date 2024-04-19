@@ -1,6 +1,7 @@
 import { CreateDogForm } from "./Components/CreateDogForm";
 import { Dogs } from "./Components/Dogs";
 import { Section } from "./Components/Section";
+import { FormProvider } from "./providers/FormProvider";
 import { usePageContext } from "./providers/provider-hooks";
 
 export function App() {
@@ -13,7 +14,9 @@ export function App() {
       </header>
       <Section label={"Dogs: "}>
         <Dogs />
-        {currentPage === "form" && <CreateDogForm />}
+        <FormProvider>
+          {currentPage === "form" && <CreateDogForm />}
+        </FormProvider>
       </Section>
     </div>
   );
