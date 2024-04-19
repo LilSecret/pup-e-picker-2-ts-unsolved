@@ -5,7 +5,7 @@ export const CreateDogForm = () => {
   const { form, setForm, submitForm, resetForm } = useFormContext();
   const { loading } = useDogContext();
 
-  const badInputs = form.name.length < 2 || form.description < 2;
+  const badInputs = form.name.length < 2 || form.description.length < 2;
 
   return (
     <form
