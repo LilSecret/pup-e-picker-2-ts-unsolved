@@ -11,3 +11,5 @@ export const dogSchema = z.object({
 export type TNewDog = Omit<TDog, "id">;
 
 export type TDog = z.infer<typeof dogSchema>;
+
+export type TPage = "all" | "favorite" | "unfavorite" | "form";

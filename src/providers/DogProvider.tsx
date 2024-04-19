@@ -1,9 +1,10 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { TDog, TNewDog } from "../types";
 import { Requests } from "../api";
 import toast from "react-hot-toast";
 
 type TDogProvider = {
+  dogs: TDog[];
   loading: boolean;
   removeDog: (id: number) => void;
   toggleDogFavorite: (favorited: boolean, id: number) => void;
@@ -77,9 +78,20 @@ export default function DogProviders({ children }: TProps) {
       });
   };
 
+  useEffect(() => {
+    updateAllDogs();
+  }, []);
+
   return (
     <DogContext.Provider
-      value={{ loading, toggleDogFavorite, removeDog, updateAllDogs, addDog }}
+      value={{
+        dogs,
+        loading,
+        toggleDogFavorite,
+        removeDog,
+        updateAllDogs,
+        addDog,
+      }}
     >
       {children}
     </DogContext.Provider>

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useDogContext } from "../providers/provider-hooks";
 
 export const Section = ({
   label,
@@ -8,6 +9,10 @@ export const Section = ({
   label: string;
   children: ReactNode;
 }) => {
+  const { dogs } = useDogContext();
+  const favoriteAmount = dogs.filter((dog) => dog.isFavorite).length;
+  const unfavoritedAmount = dogs.length - favoriteAmount;
+
   return (
     <section id="main-section">
       <div className="container-header">
@@ -20,7 +25,7 @@ export const Section = ({
               alert("click favorited");
             }}
           >
-            favorited ( {0} )
+            favorited ( {favoriteAmount} )
           </div>
 
           {/* This should display the unfavorited count */}
@@ -30,7 +35,7 @@ export const Section = ({
               alert("click unfavorited");
             }}
           >
-            unfavorited ( {10} )
+            unfavorited ( {unfavoritedAmount} )
           </div>
           <div
             className={`selector ${""}`}
