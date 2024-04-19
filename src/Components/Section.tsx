@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useDogContext } from "../providers/provider-hooks";
+import { useDogContext, usePageContext } from "../providers/provider-hooks";
 
 export const Section = ({
   label,
@@ -10,6 +10,7 @@ export const Section = ({
   children: ReactNode;
 }) => {
   const { dogs } = useDogContext();
+  const { currentPage, setActivePage } = usePageContext();
   const favoriteAmount = dogs.filter((dog) => dog.isFavorite).length;
   const unfavoritedAmount = dogs.length - favoriteAmount;
 
@@ -20,9 +21,9 @@ export const Section = ({
         <div className="selectors">
           {/* This should display the favorited count */}
           <div
-            className={`selector ${"active"}`}
+            className={`selector ${currentPage === "favorite" ? "active" : ""}`}
             onClick={() => {
-              alert("click favorited");
+              setActivePage("favorite");
             }}
           >
             favorited ( {favoriteAmount} )
@@ -30,17 +31,19 @@ export const Section = ({
 
           {/* This should display the unfavorited count */}
           <div
-            className={`selector ${""}`}
+            className={`selector  ${
+              currentPage === "unfavorite" ? "active" : ""
+            }`}
             onClick={() => {
-              alert("click unfavorited");
+              setActivePage("unfavorite");
             }}
           >
             unfavorited ( {unfavoritedAmount} )
           </div>
           <div
-            className={`selector ${""}`}
+            className={`selector  ${currentPage === "form" ? "active" : ""}`}
             onClick={() => {
-              alert("clicked create dog");
+              setActivePage("form");
             }}
           >
             create dog
