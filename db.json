@@ -1,13 +1,6 @@
 {
   "dogs": [
     {
-      "name": "Jonatan",
-      "image": "./public/assets/boxer.png",
-      "description": "Shoes after Dollar Marketing female generating Diesel",
-      "isFavorite": true,
-      "id": 0
-    },
-    {
       "name": "Anthony",
       "image": "./public/assets/cowardly.png",
       "description": "plum Savings female Ghana programming solutions miniaturise",
@@ -25,28 +18,28 @@
       "name": "Alfred",
       "image": "./public/assets/cowardly.png",
       "description": "Northwest DRAM henry applications South",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 5
     },
     {
       "name": "Violette",
       "image": "./public/assets/boxer.png",
       "description": "embrace Web Southwest perspiciatis though",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 6
     },
     {
       "name": "Kenton",
       "image": "./public/assets/cowardly.png",
       "description": "Bedfordshire Human tempora Managed Electronic Directives Nissan expedite",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 7
     },
     {
       "name": "Asa",
       "image": "./public/assets/dalmation.png",
       "description": "Minivan Neither Road Movies radian",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 8
     },
     {
@@ -74,7 +67,7 @@
       "name": "Art",
       "image": "./public/assets/blue-heeler.png",
       "description": "Global ha Genderflux payment Metal pixel Money",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 12
     },
     {
@@ -102,7 +95,7 @@
       "name": "Trudie",
       "image": "./public/assets/boxer.png",
       "description": "connecting blue National Movies Interactions ack Tandem Shirt",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 16
     },
     {
@@ -116,7 +109,7 @@
       "name": "Vallie",
       "image": "./public/assets/chihuahua.avif",
       "description": "Lead synergistic noisy operating Passenger female Salad Rubber",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 18
     },
     {
@@ -125,20 +118,6 @@
       "description": "Planner maxime invoice ROI granular ouch Franc",
       "isFavorite": true,
       "id": 19
-    },
-    {
-      "name": "Kally",
-      "description": "I love to eat apples",
-      "image": "/assets/cowardly.png",
-      "isFavorite": true,
-      "id": 20
-    },
-    {
-      "name": "Charles",
-      "description": "I love to eat cheese",
-      "image": "/assets/boxer.jpeg",
-      "isFavorite": false,
-      "id": 21
     }
   ]
 }

@@ -23,35 +23,25 @@ export default function DogProviders({ children }: TProps) {
   const [loading, setLoading] = useState(false);
 
   const toggleDogFavorite = (favorited: boolean, id: number) => {
-    setLoading(true);
     setDogs(
       dogs.map((dog) =>
         dog.id === id ? { ...dog, isFavorite: favorited } : dog
       )
     );
-    Requests.patchDog({ isFavorite: favorited }, id)
-      .catch((error) => {
-        if (error) {
-          setDogs(dogs);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    Requests.patchDog({ isFavorite: favorited }, id).catch((error) => {
+      if (error) {
+        setDogs(dogs);
+      }
+    });
   };
 
   const removeDog = (id: number) => {
-    setLoading(true);
     setDogs(dogs.filter((dog) => dog.id != id));
-    Requests.deleteDogRequest(id)
-      .catch((error) => {
-        if (error) {
-          setDogs(dogs);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    Requests.deleteDogRequest(id).catch((error) => {
+      if (error) {
+        setDogs(dogs);
+      }
+    });
   };
 
   const updateAllDogs = () => {
