@@ -1,8 +1,11 @@
 import { dogPictures } from "../dog-pictures";
-import { useFormContext } from "../providers/provider-hooks";
+import { useDogContext, useFormContext } from "../providers/provider-hooks";
 
 export const CreateDogForm = () => {
   const { form, setForm, submitForm, resetForm } = useFormContext();
+  const { loading } = useDogContext();
+
+  const badInputs = form.name.length < 2 || form.description < 2;
 
   return (
     <form
@@ -49,7 +52,7 @@ export const CreateDogForm = () => {
           );
         })}
       </select>
-      <input type="submit" value="submit" />
+      <input type="submit" value="submit" disabled={loading || badInputs} />
     </form>
   );
 };
