@@ -15,7 +15,7 @@ type TProps = {
   children: ReactNode;
 };
 
-const DogContent = createContext<TDogProvider>({} as TDogProvider);
+export const DogContext = createContext<TDogProvider>({} as TDogProvider);
 
 export default function DogProviders({ children }: TProps) {
   const [dogs, setDogs] = useState<TDog[]>([]);
@@ -78,10 +78,10 @@ export default function DogProviders({ children }: TProps) {
   };
 
   return (
-    <DogContent.Provider
+    <DogContext.Provider
       value={{ loading, toggleDogFavorite, removeDog, updateAllDogs, addDog }}
     >
       {children}
-    </DogContent.Provider>
+    </DogContext.Provider>
   );
 }
