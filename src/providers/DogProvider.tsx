@@ -63,6 +63,7 @@ export default function DogProviders({ children }: TProps) {
     Requests.postDog(dog)
       .then(() => {
         updateAllDogs();
+        toast.success("Dog Created 🐶");
       })
       .catch((error) => {
         if (error) {
