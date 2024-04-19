@@ -1,13 +1,10 @@
 import { CreateDogForm } from "./Components/CreateDogForm";
-import { DogCard } from "./Components/DogCard";
+import { Dogs } from "./Components/Dogs";
 import { Section } from "./Components/Section";
-import { useDogContext, usePageContext } from "./providers/provider-hooks";
+import { usePageContext } from "./providers/provider-hooks";
 
 export function App() {
-  const { currentPage, getPage } = usePageContext();
-  const { loading, removeDog, toggleDogFavorite } = useDogContext();
-
-  const activeDogs = getPage();
+  const { currentPage } = usePageContext();
 
   return (
     <div className="App" style={{ backgroundColor: "skyblue" }}>
@@ -15,23 +12,7 @@ export function App() {
         <h1>pup-e-picker (Functional)</h1>
       </header>
       <Section label={"Dogs: "}>
-        {activeDogs.map((dog) => {
-          return (
-            <DogCard
-              dog={dog}
-              onTrashIconClick={() => {
-                removeDog(dog.id);
-              }}
-              onEmptyHeartClick={() => {
-                toggleDogFavorite(true, dog.id);
-              }}
-              onHeartClick={() => {
-                toggleDogFavorite(false, dog.id);
-              }}
-              isLoading={loading}
-            />
-          );
-        })}
+        <Dogs />
         {currentPage === "form" && <CreateDogForm />}
       </Section>
     </div>

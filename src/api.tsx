@@ -35,11 +35,10 @@ const patchDog = (dog: Partial<TNewDog>, id: number) => {
 const getAllDogs = () => {
   return fetch(`${BASE_URL}/dogs`, {
     method: "GET",
-    body: JSON.stringify({}),
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+  }).then((response) => response.json());
 };
 
 export const Requests = {

@@ -57,6 +57,9 @@ export default function DogProviders({ children }: TProps) {
   const updateAllDogs = () => {
     setLoading(true);
     Requests.getAllDogs()
+      .then((response) => {
+        setDogs(response as TDog[]);
+      })
       .catch((error) => {
         if (error) {
           toast.error("There was an Error getting Dogs");

@@ -5,7 +5,7 @@ import { useDogContext } from "./provider-hooks";
 type TPageProvider = {
   currentPage: TPage;
   setActivePage: (page: TPage) => void;
-  getPage: () => TDog[];
+  getDogsPage: () => TDog[];
 };
 
 type TProps = {
@@ -23,7 +23,7 @@ export const PageProvider = ({ children }: TProps) => {
     setCurrentPage(page === currentPage ? "all" : page);
   };
 
-  const getPage = (): TDog[] => {
+  const getDogsPage = (): TDog[] => {
     switch (currentPage) {
       case "all":
         return dogs;
@@ -37,7 +37,7 @@ export const PageProvider = ({ children }: TProps) => {
   };
 
   return (
-    <PageContext.Provider value={{ currentPage, setActivePage, getPage }}>
+    <PageContext.Provider value={{ currentPage, setActivePage, getDogsPage }}>
       {children}
     </PageContext.Provider>
   );
