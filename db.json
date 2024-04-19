@@ -88,7 +88,7 @@
       "name": "Kris",
       "image": "./public/assets/blue-heeler.png",
       "description": "Beryllium Chevrolet partnerships focus Southeast Poland salmon",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 15
     },
     {
@@ -118,6 +118,27 @@
       "description": "Planner maxime invoice ROI granular ouch Franc",
       "isFavorite": true,
       "id": 19
+    },
+    {
+      "name": "Charles",
+      "description": "I love to to code",
+      "image": "/assets/cowardly.png",
+      "isFavorite": false,
+      "id": 20
+    },
+    {
+      "name": "Kathrine",
+      "description": "Is a cute doggy",
+      "image": "/assets/corgi.png",
+      "isFavorite": true,
+      "id": 21
+    },
+    {
+      "name": "Marty",
+      "description": "Loves to go skiing",
+      "image": "/assets/corgi.png",
+      "isFavorite": false,
+      "id": 22
     }
   ]
 }
