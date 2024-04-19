@@ -6,9 +6,7 @@ export function App() {
       <header>
         <h1>pup-e-picker (Functional)</h1>
       </header>
-      <Section label={"Dogs: "}>
-
-      </Section>
+      <Section label={"Dogs: "}></Section>
     </div>
   );
 }

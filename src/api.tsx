@@ -1,4 +1,4 @@
-import { TDog } from "./types";
+import { TDog, TNewDog } from "./types";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -12,7 +12,7 @@ const deleteDogRequest = (id: number) => {
   }).then((res) => res.json());
 };
 
-const postDog = (dog: Omit<TDog, "id">) => {
+const postDog = (dog: TNewDog) => {
   return fetch(`${BASE_URL}/dogs`, {
     method: "POST",
     body: JSON.stringify(dog),
@@ -22,7 +22,7 @@ const postDog = (dog: Omit<TDog, "id">) => {
   }).then((res) => res.json());
 };
 
-const patchFavoriteForDog = (dog: Partial<TDog>, id: number) => {
+const patchDog = (dog: Partial<TNewDog>, id: number) => {
   return fetch(`${BASE_URL}/dogs/${id}`, {
     method: "PATCH",
     body: JSON.stringify(dog),
@@ -45,6 +45,6 @@ const getAllDogs = () => {
 export const Requests = {
   postDog,
   deleteDogRequest,
-  patchFavoriteForDog,
+  patchDog,
   getAllDogs,
 };
