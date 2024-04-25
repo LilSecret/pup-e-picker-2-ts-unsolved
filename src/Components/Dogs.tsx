@@ -1,9 +1,9 @@
-import { useDogContext, usePageContext } from "../providers/provider-hooks";
+import { useDogContext } from "../providers/DogProvider";
 import { DogCard } from "./DogCard";
 
 export const Dogs = () => {
-  const { getDogsPage } = usePageContext();
-  const { loading, removeDog, toggleDogFavorite } = useDogContext();
+  const { loading, removeDog, toggleDogFavorite, getDogsPage } =
+    useDogContext();
   const activeDogs = getDogsPage();
 
   return (

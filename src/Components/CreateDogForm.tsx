@@ -1,11 +1,41 @@
+import { useState } from "react";
 import { dogPictures } from "../dog-pictures";
-import { useDogContext, useFormContext } from "../providers/provider-hooks";
+import toast from "react-hot-toast";
+import { useDogContext } from "../providers/DogProvider";
+
+type TForm = {
+  name: string;
+  description: string;
+  image: string;
+};
 
 export const CreateDogForm = () => {
-  const { form, setForm, submitForm, resetForm } = useFormContext();
-  const { loading } = useDogContext();
+  const { loading, addDog } = useDogContext();
+  const [form, setForm] = useState<TForm>({
+    name: "",
+    description: "",
+    image: dogPictures.BlueHeeler,
+  });
 
   const badInputs = form.name.length < 2 || form.description.length < 2;
+
+  const resetForm = () => {
+    setForm({
+      name: "",
+      description: "",
+      image: dogPictures.BlueHeeler,
+    });
+  };
+
+  const submitForm = () => {
+    addDog({ ...form, isFavorite: false })
+      .then(() => {
+        resetForm();
+      })
+      .catch((error) => {
+        toast.error(`Error has occurred creating a dog. ${error.message}`);
+      });
+  };
 
   return (
     <form
@@ -13,7 +43,6 @@ export const CreateDogForm = () => {
       onSubmit={(e) => {
         e.preventDefault();
         submitForm();
-        resetForm();
       }}
     >
       <h4>Create a New Dog</h4>

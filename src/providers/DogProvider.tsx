@@ -1,26 +1,51 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { TDog, TNewDog } from "../types";
 import { Requests } from "../api";
 import toast from "react-hot-toast";
 
+type TPage = "all" | "favorite" | "unfavorite" | "form";
+
 type TDogProvider = {
   dogs: TDog[];
   loading: boolean;
-  removeDog: (id: number) => void;
-  toggleDogFavorite: (favorited: boolean, id: number) => void;
-  updateAllDogs: () => void;
-  addDog: (dog: TNewDog) => void;
+  removeDog: (id: number) => Promise<unknown>;
+  toggleDogFavorite: (favorited: boolean, id: number) => Promise<unknown>;
+  updateAllDogs: () => Promise<unknown>;
+  addDog: (dog: TNewDog) => Promise<unknown>;
+  currentPage: TPage;
+  setActivePage: (page: TPage) => void;
+  getDogsPage: () => TDog[];
 };
 
-type TProps = {
-  children: ReactNode;
-};
+export const DogContext = createContext<TDogProvider | null>(null);
 
-export const DogContext = createContext<TDogProvider>({} as TDogProvider);
-
-export default function DogProviders({ children }: TProps) {
+export function DogProviders({ children }: { children: ReactNode }) {
   const [dogs, setDogs] = useState<TDog[]>([]);
+  const [currentPage, setCurrentPage] = useState<TPage>("all");
   const [loading, setLoading] = useState(false);
+
+  const setActivePage = (page: TPage) => {
+    setCurrentPage(page === currentPage ? "all" : page);
+  };
+
+  const getDogsPage = (): TDog[] => {
+    switch (currentPage) {
+      case "all":
+        return dogs;
+      case "favorite":
+        return dogs.filter((dog) => dog.isFavorite);
+      case "unfavorite":
+        return dogs.filter((dog) => !dog.isFavorite);
+      case "form":
+        return [];
+    }
+  };
 
   const toggleDogFavorite = (favorited: boolean, id: number) => {
     setDogs(
@@ -28,7 +53,7 @@ export default function DogProviders({ children }: TProps) {
         dog.id === id ? { ...dog, isFavorite: favorited } : dog
       )
     );
-    Requests.patchDog({ isFavorite: favorited }, id).catch((error) => {
+    return Requests.patchDog({ isFavorite: favorited }, id).catch((error) => {
       if (error) {
         setDogs(dogs);
       }
@@ -37,7 +62,7 @@ export default function DogProviders({ children }: TProps) {
 
   const removeDog = (id: number) => {
     setDogs(dogs.filter((dog) => dog.id != id));
-    Requests.deleteDogRequest(id).catch((error) => {
+    return Requests.deleteDogRequest(id).catch((error) => {
       if (error) {
         setDogs(dogs);
       }
@@ -46,10 +71,8 @@ export default function DogProviders({ children }: TProps) {
 
   const updateAllDogs = () => {
     setLoading(true);
-    Requests.getAllDogs()
-      .then((response) => {
-        setDogs(response as TDog[]);
-      })
+    return Requests.getAllDogs()
+      .then(setDogs)
       .catch((error) => {
         if (error) {
           toast.error("There was an Error getting Dogs");
@@ -60,10 +83,10 @@ export default function DogProviders({ children }: TProps) {
 
   const addDog = (dog: TNewDog) => {
     setLoading(true);
-    Requests.postDog(dog)
+    return Requests.postDog(dog)
       .then(() => {
         toast.success("Dog Created 🐶");
-        return updateAllDogs();
+        updateAllDogs().catch((error) => console.log(error));
       })
       .catch((error) => {
         if (error) {
@@ -76,7 +99,9 @@ export default function DogProviders({ children }: TProps) {
   };
 
   useEffect(() => {
-    updateAllDogs();
+    updateAllDogs().catch((error) => {
+      console.log(error);
+    });
   }, []);
 
   return (
@@ -88,9 +113,14 @@ export default function DogProviders({ children }: TProps) {
         removeDog,
         updateAllDogs,
         addDog,
+        currentPage,
+        setActivePage,
+        getDogsPage,
       }}
     >
       {children}
     </DogContext.Provider>
   );
 }
+
+export const useDogContext = () => useContext(DogContext);

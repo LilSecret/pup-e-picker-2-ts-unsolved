@@ -6,15 +6,12 @@ import "./index.css";
 import { Toaster } from "react-hot-toast";
 import { App } from "./App";
 import DogProviders from "./providers/DogProvider";
-import { PageProvider } from "./providers/PageProvider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Toaster />
     <DogProviders>
-      <PageProvider>
-        <App />
-      </PageProvider>
+      <App />
     </DogProviders>
   </React.StrictMode>
 );
