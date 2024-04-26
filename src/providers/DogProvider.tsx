@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { TDog, TNewDog } from "../types";
+import { TDog, TNewDog, dogArraySchema } from "../types";
 import { Requests } from "../api";
 import toast from "react-hot-toast";
 
@@ -14,18 +14,18 @@ type TPage = "all" | "favorite" | "unfavorite" | "form";
 type TDogProvider = {
   dogs: TDog[];
   loading: boolean;
-  removeDog: (id: number) => Promise<unknown>;
+  removeDog: (id: number) => Promise<void>;
   toggleDogFavorite: (favorited: boolean, id: number) => Promise<unknown>;
-  updateAllDogs: () => Promise<unknown>;
-  addDog: (dog: TNewDog) => Promise<unknown>;
+  updateAllDogs: () => Promise<void>;
+  addDog: (dog: TNewDog) => Promise<void>;
   currentPage: TPage;
   setActivePage: (page: TPage) => void;
   getDogsPage: () => TDog[];
 };
 
-export const DogContext = createContext<TDogProvider | null>(null);
+export const DogContext = createContext<TDogProvider | undefined>(undefined);
 
-export function DogProviders({ children }: { children: ReactNode }) {
+export default function DogProviders({ children }: { children: ReactNode }) {
   const [dogs, setDogs] = useState<TDog[]>([]);
   const [currentPage, setCurrentPage] = useState<TPage>("all");
   const [loading, setLoading] = useState(false);
@@ -123,4 +123,10 @@ export function DogProviders({ children }: { children: ReactNode }) {
   );
 }
 
-export const useDogContext = () => useContext(DogContext);
+export const useDogContext = () => {
+  const context = useContext(DogContext);
+  if (!context) {
+    throw new Error("Context is not defined");
+  }
+  return context;
+};

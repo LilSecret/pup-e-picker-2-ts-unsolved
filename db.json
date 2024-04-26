@@ -139,6 +139,13 @@
       "image": "/assets/corgi.png",
       "isFavorite": false,
       "id": 22
+    },
+    {
+      "name": "Charles",
+      "description": "I love to eat appps",
+      "image": "/assets/chihuahua.avif",
+      "isFavorite": false,
+      "id": 23
     }
   ]
 }

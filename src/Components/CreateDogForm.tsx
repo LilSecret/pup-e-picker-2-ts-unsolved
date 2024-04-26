@@ -32,8 +32,8 @@ export const CreateDogForm = () => {
       .then(() => {
         resetForm();
       })
-      .catch((error) => {
-        toast.error(`Error has occurred creating a dog. ${error.message}`);
+      .catch(() => {
+        toast.error(`Error has occurred creating a dog.`);
       });
   };
 

@@ -14,13 +14,23 @@ export const Dogs = () => {
             key={dog.id}
             dog={dog}
             onTrashIconClick={() => {
-              removeDog(dog.id);
+              removeDog(dog.id).catch(() => {
+                throw new Error(`Error has occurred deleting dog ${dog.id}`);
+              });
             }}
             onEmptyHeartClick={() => {
-              toggleDogFavorite(true, dog.id);
+              toggleDogFavorite(true, dog.id).catch(() => {
+                throw new Error(
+                  `Error has occurred adding dog ${dog.id} to favorites`
+                );
+              });
             }}
             onHeartClick={() => {
-              toggleDogFavorite(false, dog.id);
+              toggleDogFavorite(false, dog.id).catch(() => {
+                throw new Error(
+                  `Error has occurred removing dog ${dog.id} to favorites`
+                );
+              });
             }}
             isLoading={loading}
           />
