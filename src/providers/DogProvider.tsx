@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { TDog, TNewDog, dogArraySchema } from "../types";
+import { TDog, TNewDog } from "../types";
 import { Requests } from "../api";
 import toast from "react-hot-toast";
 
