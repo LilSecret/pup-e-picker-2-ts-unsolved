@@ -14,7 +14,7 @@ export const Section = ({
   const favoriteAmount = dogs.filter((dog) => dog.isFavorite).length;
   const unfavoritedAmount = dogs.length - favoriteAmount;
 
-  const isPageActive = (page: TPage) => {
+  const getIsPageActive = (page: TPage) => {
     return page === currentPage ? "active" : "";
   };
 
@@ -25,7 +25,7 @@ export const Section = ({
         <div className="selectors">
           {/* This should display the favorited count */}
           <div
-            className={`selector ${isPageActive("favorite")}`}
+            className={`selector ${getIsPageActive("favorite")}`}
             onClick={() => {
               setActivePage("favorite");
             }}
@@ -35,7 +35,7 @@ export const Section = ({
 
           {/* This should display the unfavorited count */}
           <div
-            className={`selector  ${isPageActive("unfavorite")}`}
+            className={`selector  ${getIsPageActive("unfavorite")}`}
             onClick={() => {
               setActivePage("unfavorite");
             }}
@@ -43,7 +43,7 @@ export const Section = ({
             unfavorited ( {unfavoritedAmount} )
           </div>
           <div
-            className={`selector  ${isPageActive("form")}`}
+            className={`selector  ${getIsPageActive("form")}`}
             onClick={() => {
               setActivePage("form");
             }}

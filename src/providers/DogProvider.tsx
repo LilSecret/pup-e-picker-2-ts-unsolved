@@ -88,11 +88,6 @@ export default function DogProviders({ children }: { children: ReactNode }) {
         toast.success("Dog Created 🐶");
         updateAllDogs().catch((error) => console.log(error));
       })
-      .catch((error) => {
-        if (error) {
-          toast.error("There was an Error Posting you Dog");
-        }
-      })
       .finally(() => {
         setLoading(false);
       });
